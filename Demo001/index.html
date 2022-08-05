@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>前端工程师面试题目</title>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+<style>
+.font_style {
+    margin-left: 10px;
+    font-weight: 700;
+}
+.container {
+    margin-top: 20px;
+    width: 100%;
+    height: 50%;
+    background-color: rgb(255, 226, 139);
+}
+.group_left {
+    margin-left: 50px;
+}
+.raio_left {
+    margin-left: 150px;
+}
+.raio_left1 {
+    margin-left: 100px;
+}
+.radio_top {
+    margin-top: 20px;
+}
+.seamless-warp {
+margin-top: 10px;
+height: 160px;
+overflow: hidden;
+}
+ul {
+margin: 0;
+padding: 0;
+}
+ul li {
+height: 20px;
+line-height: 10px;
+list-style-type: none;
+display: flex;
+justify-content: space-around;
+}
+</style>
+</head>
+<body>
+    <div id="app">
+        <img src="./assets/封面图_3.jpg" alt="图片未加载" style="width:50%;height:50%;" />
+
+        <el-form ref="formRef" :model="form" :rules="rules">
+            <el-form-item prop="checkbox1">
+                <span class="font_style">下面哪个是建模的软件？</span><br/>
+                <el-radio-group class="group_left" v-model="form.checkbox1">
+                    <el-radio label="Excel"></el-radio>
+                    <el-radio class="raio_left" label="3Dsmax"></el-radio>
+                    <el-radio class="raio_left" label="Photoshop"></el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item prop="checkbox2">
+                <span class="font_style">以下哪个游戏是3D游戏？</span><br/>
+                <el-radio-group class="group_left" v-model="form.checkbox2">
+                    <el-radio label="王者荣耀"></el-radio>
+                    <el-radio class="raio_left1" label="英雄联盟"></el-radio>
+                    <el-radio class="raio_left1" label="绝地求生"></el-radio>
+                    <el-radio class="raio_left1" label="以上均可"></el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item prop="checkbox3">
+                <span class="font_style">下面哪个建模你觉得最难？</span><br/>
+                <el-radio-group class="group_left" v-model="form.checkbox3">
+                    <el-radio label="人物建模"></el-radio>
+                    <el-radio class="raio_left" label="道具建模"></el-radio>
+                    <el-radio class="raio_left" label="场景建模"></el-radio>
+                    </el-radio-group><br/>
+                    <image
+                        style="width: 250px; height: 150px"
+                        src="./assets/选项_人物建模.gif"
+                        alt="" />
+                    <image
+                        style="width: 250px; height: 150px"
+                        src="./assets/选项_道具建模.gif"
+                        alt="" />
+                    <image
+                        style="width: 250px; height: 150px"
+                        src="./assets/选项_场景建模.gif"
+                        alt="" />  
+            </el-form-item>    
+            <div style="background-color: rgb(255, 226, 139); text-align: center; width: 50%; height: 30px;">
+                <span icon="el-icon-s-promotion">截止目前已经有<em style="color: red;">84197</em>人领取成功！</span>
+            </div>
+            <el-form-item prop="age">
+                <span class="font_style">年龄（根据年龄匹配课程）</span><br/>
+                <el-radio-group class="group_left" v-model="form.age">
+                    <el-radio label="17岁以下"></el-radio>
+                    <el-radio class="raio_left" label="18-20岁"></el-radio>
+                    <el-radio class="raio_left" label="21-24岁"></el-radio><br/>
+                    <el-radio class="radio_top" label="25-30岁"></el-radio>
+                    <el-radio class="radio_top raio_left" label="31-40岁"></el-radio>
+                    <el-radio class="radio_top raio_left" label="41岁以上"></el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item prop="phone">
+                <span class="font_style">您的手机号是？（48小时内有老师联系和发放课程和资料，请留意短信）</span><br/>
+                <el-input style="width: 50%;" placeholder="请输入手机号码（已通过二级加密）" v-model="form.phone"></el-input><br/>
+            </el-form-item>
+            <el-button style="width: 50%;" type="primary" @click="submitForm">点击提交||领取课程</el-button>
+            <div style="width: 50%; height: 100px; background-color: rgb(255, 236, 180); margin-top: 20px;">
+                <span>|游戏建模|&|动漫建模|学习资料</span><br/>
+                <span>内含15个学习资料</span>
+                <el-button style="float: right;" type="warning" round>领取</el-button>
+                <div style="background-color: rgb(252, 223, 135); width: 100%; height: 30px; position: relative; margin-top: 28.4px;">
+                    <span style="font-size: 10px; text-align: left; margin-left: 10px;">注意：如果显示已领取，资料包会在课后发给同学们噢~</span>
+                </div>
+            </div>
+            <div style="background-color: rgb(215, 215, 215); width: 50%; height: 200px; margin-top: 20px; text-align: center;">
+                <span style="font-weight: 700;">最新报名用户</span>
+                <vue-seamless-scroll :data="listData"
+                    :class-option="optionHover"
+                    class="seamless-warp">
+                    <ul class="item">
+                        <li v-for="(item, index) in listData"
+                            :key="index"
+                            style="padding: 10px; margin: 5px">
+                            <span>{{item.name}}</span>
+                            <span>{{item.moblie}}</span>
+                            <span>{{item.date}}</span>
+                        </li>
+                    </ul>
+                </vue-seamless-scroll>
+                
+            </div>
+
+        </el-form>
+    </div>
+</body>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-seamless-scroll@latest/dist/vue-seamless-scroll.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                form: {
+                    age: '',
+                    phone: '',
+                    checkbox1: '',
+                    checkbox2: '',
+                    checkbox3: '',
+                },
+                listData: [
+                    { 
+                        name: '周**',
+                        moblie: '136****4578',
+                        date: '1分钟前'
+                    },{
+                        name: '吴**',
+                        moblie: '154****9975',
+                        date: '2分钟前'
+                    },{
+                        name: '王*',
+                        moblie: '153****5658',
+                        date: '3分钟前'
+                    },{
+                        name: '郑*',
+                        moblie: '199****3378',
+                        date: '4分钟前'
+                    },{
+                        name: '田*',
+                        moblie: '173****56878',
+                        date: '5分钟前'
+                    },{
+                        name: '骆**',
+                        moblie: '155****5888',
+                        date: '6分钟前'
+                    },{
+                        name: '黄**',
+                        moblie: '183****9988',
+                        date: '7分钟前'
+                    },{
+                        name: '吴**',
+                        moblie: '138****5578',
+                        date: '8分钟前'
+                    },{
+                        name: '吴**',
+                        moblie: '138****5578',
+                        date: '9分钟前'
+                    },{
+                        name: '吴**',
+                        moblie: '138****5578',
+                        date: '10分钟前'
+                    },{
+                        name: '吴**',
+                        moblie: '138****5578',
+                        date: '11分钟前'
+                    }
+                ],
+                rules: {
+                    checkbox1: [
+                        { required: true, message: '请勾选其中一个选项', trigger: 'change' },
+                    ],
+                    checkbox2: [
+                        { required: true, message: '请勾选其中一个选项', trigger: 'change' },
+                    ],
+                    checkbox3: [
+                        { required: true, message: '请勾选其中一个选项', trigger: 'change' },
+                    ],
+                    age: [
+                        { required: true, message: '年龄为必填项，请选择', trigger: 'change' },
+                    ],
+                    phone: [
+                        { required: true, message: '请输入您的手机号', trigger: 'blur' },
+                        { min: 11, max: 11, message: '手机号格式错误', trigger: 'blur' }
+                    ]
+                }
+            }
+        },
+        methods: {
+            submitForm() {
+                this.$refs.formRef.validate(  async valid => {
+                    if(!valid) return
+                    const { data: res } = await this.axios.post('http://124.71.73.195:7766/mt', this.formRef)
+                    if(res.code !== 1) return alert(res.msg)
+                    alert(res.msg)
+                });
+            },
+        },
+        computed: {
+            optionHover() {
+                return {
+                    step: 0.2, // 数值越大速度滚动越快
+                    limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length
+                    hoverStop: true, // 是否开启鼠标悬停stop
+                    direction: 1, // 0向下 1向上 2向左 3向右
+                    openWatch: true, // 开启数据实时监控刷新dom
+                    singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
+                    singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
+                    waitTime: 1000, // 单步运动停止的时间(默认值1000ms)
+                }
+            }
+        },
+    })
+</script>
+
+
+</html>
